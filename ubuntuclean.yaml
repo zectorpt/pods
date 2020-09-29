@@ -9,7 +9,7 @@ spec:
   - image: ubuntu
     command:
       - "sleep"
-      - "60"
+      - "30"
     imagePullPolicy: IfNotPresent
     name: ubuntu
   restartPolicy: Always
