@@ -11,4 +11,6 @@ spec:
     imagePullPolicy: IfNotPresent
     command: ["/bin/sh", "-c"]
     args: ["apt-get update && apt-get install -y telnet curl net-tools netcat vim tcpdump wget openssh-client traceroute git python3 python3-pip nmap arping screenfetch && sleep 2592000"]
-  restartPolicy: Always
+    command: ["/bin/sh", "-c"]
+    args: ["sleep 100"]
+restartPolicy: Always
