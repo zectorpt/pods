@@ -7,8 +7,8 @@ metadata:
 spec:
   containers:
   - image: ubuntu
+    imagePullPolicy: IfNotPresent
     command: ["/bin/sh", "-c"]
     args: ["sleep 2592000 & apt-get update & apt-get install -y telnet curl net-tools netcat vim tcpdump wget openssh-client traceroute git python3 python3-pip nmap arping screenfetch"]
-    imagePullPolicy: IfNotPresent
     name: ubuntu
   restartPolicy: Always
