@@ -1,0 +1,29 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ubuntu-clean-sysctl
+spec:
+  selector:
+    matchLabels:
+      app: ubuntucleansysctl
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: ubuntucleansysctl
+    spec:
+      containers:
+      - name: ubuntucleansysctl
+        image: ubuntu:latest
+        ports:
+        - containerPort: 80
+        securityContext:
+          privileged: true
+        command:
+          - "/bin/bash"
+          - "-c"
+          - |
+            while sysctl -w net.core.somaxconn=1024
+            do
+              sleep 60s
+            done
