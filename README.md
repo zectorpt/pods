@@ -19,5 +19,7 @@ Ubuntu deployment with a workaround to change the kernel parameter net.core.soma
 
 Deploy:
 kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntucleansysctl.yaml
+
 Check the parameter:
+
 kubectl exec -it ubuntu-clean-sysctl-[d8f4977c4-m5z6w] cat /proc/sys/net/core/somaxconn
