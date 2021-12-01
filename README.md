@@ -22,4 +22,4 @@ kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntucl
 
 Check the parameter:
 
-kubectl exec -it ubuntu-clean-sysctl-[d8f4977c4-m5z6w] cat /proc/sys/net/core/somaxconn
+kubectl exec -it ubuntu-clean-sysctl-[d8f4977c4-m5z6w] -- /bin/cat /proc/sys/net/core/somaxconn
