@@ -12,7 +12,7 @@ Deploy the image:
 kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntuts.yaml
 
 Enter the POD:
-kubectl exec -it ubuntuts -- /bin/bashubuntuts.yaml
+kubectl exec -it ubuntuts -- /bin/bash
 
 # ubuntucleansysctl.yaml
 Ubuntu deployment with a workaround to change the kernel parameter net.core.somaxconn to 1024
