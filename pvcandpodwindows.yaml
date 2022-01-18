@@ -1,0 +1,33 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-azurefile
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: azurefile
+  
+  ---
+  
+kind: Pod
+apiVersion: v1
+metadata:
+  name: iis-azurefile
+  labels:
+    name: storage
+spec:
+  containers:
+  - image: mcr.microsoft.com/windows/servercore/iis
+    name: iis-azurefile
+    volumeMounts:
+    - name: azurefilevol
+      mountPath: '/mnt/azure'
+  nodeSelector:
+    beta.kubernetes.io/os: windows
+  volumes:
+  - name: azurefilevol
+    persistentVolumeClaim:
+      claimName: pvc-azurefile
