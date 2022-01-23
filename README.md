@@ -30,4 +30,5 @@ After create a Windows node pool deploy this windows pod and it will get assigne
 Deploy:
 kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/pvcandpodwindows.yaml
 
-kubectl exec -it iis-azurefile -- cmd
+kubectl exec -it iis-azurefile -- cmd <br>
+kubectl exec -it iis-azurefile -- powershell <br>
