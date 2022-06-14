@@ -5,11 +5,18 @@ Pods with specific configurations, ready to deploy
 # ubuntuts.yaml
 Ubuntu image good for troubleshooting with a sleep for one month
 
+
+Deploy the image:
+kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntuts.yaml
+
+Enter the POD:
+kubectl exec -it ubuntuts -- /bin/bash
+
 # ubuntuclean.yaml
 Ubuntu image clean with no software added
 
 Deploy the image:
-kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntuts.yaml
+kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntuclean.yaml
 
 Enter the POD:
 kubectl exec -it ubuntuts -- /bin/bash
