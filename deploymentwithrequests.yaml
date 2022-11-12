@@ -7,7 +7,10 @@ spec:
   template:
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+      - name: ubuntu
+        image: ubuntu:latest
+        resources:
+          requests:
+            memory: 512Mi
+          limits:
+            memory: 1Gi
