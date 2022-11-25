@@ -39,3 +39,13 @@ kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/pvcandpo
 
 kubectl exec -it iis-azurefile -- cmd <br>
 kubectl exec -it iis-azurefile -- powershell <br>
+
+# windowspod.yaml
+After create a Windows node pool deploy this windows pod
+Windows pod with IIS installed
+
+Deploy:
+kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/windowspod.yaml
+
+kubectl exec -it iis-azurefile -- cmd <br>
+kubectl exec -it iis-azurefile -- powershell <br>
