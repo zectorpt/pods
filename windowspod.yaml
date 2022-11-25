@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: iis-azure
+  labels:
+    name: storage
+spec:
+  containers:
+  - image: mcr.microsoft.com/windows/servercore/iis
+    name: iis-azurefile
+  nodeSelector:
+    kubernetes.io/os: windows
