@@ -6,9 +6,9 @@ metadata:
     app: ubuntuts
 spec:
   containers:
-  - image: ubuntu
+  - image: jomedei/aksts:latest
     name: ubuntu
     imagePullPolicy: IfNotPresent
     command: ["/bin/sh", "-c"]
-    args: ["apt-get update && apt-get install -y telnet dnsutils curl inetutils-ping net-tools netcat vim tcpdump wget openssh-client traceroute git python3 python3-pip nmap arping screenfetch htop && sleep 2592000"]
+    args: ["sleep 2592000"]
   restartPolicy: Always
