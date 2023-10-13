@@ -19,21 +19,9 @@ Install the drivers:
 az aks update --enable-blob-driver -n k8s -g ts
 
 Create PVC:
-Create a file with the bellow information and run: kubectl apply -f blob-nfs-pv.yaml
+Create a file with the bellow information and run: 
 
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: azure-blob-storage
-  annotations:
-        volume.beta.kubernetes.io/storage-class: azureblob-nfs-premium
-spec:
-  accessModes:
-  - ReadWriteMany
-  storageClassName: my-blobstorage
-  resources:
-    requests:
-      storage: 5Gi
+kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/blob-nfs-pvc.yaml
 
 Create file and check in another pod:
 kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/deploymentwithpvc.yaml
