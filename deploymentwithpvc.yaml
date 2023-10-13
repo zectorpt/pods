@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploymentwithpvc
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  replicas: 10
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        octopusexport: OctopusExport
+    spec:
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: azure-blob-storage
+      containers:
+        - name: deploywithpvc
+          image: mcr.microsoft.com/oss/nginx/nginx:1.17.3-alpine
+          volumeMounts:
+            - name: volume
+              mountPath: /mnt/blob
