@@ -1,6 +1,19 @@
 # Pods configured with specific configuration
 Pods with specific configurations, ready to deploy
 
+# configmapunderscore.yaml
+
+With this specific configmap we can change a specific configuration from ingress controler in AKS
+
+The yaml should be changed to be used in the same namespace where the ingress is deployed
+
+kubectl get all -A
+kubectl get namespaces
+kubectl get pods --namespace app-routing-system
+kubectl --namespace app-routing-system exec -it nginx-7cd7f56848-dl42j -- grep underscores_in_headers nginx.conf
+kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/refs/heads/master/configmapunderscore.yaml
+kubectl delete --namespace app-routing-system pod nginx-7cd7f56848-799x5
+kubectl --namespace app-routing-system exec -it nginx-7cd7f56848-dl42j -- grep underscores_in_headers nginx.conf
 
 # ubuntuts.yaml
 Ubuntu image good for troubleshooting with a sleep for one month
