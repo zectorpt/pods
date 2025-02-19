@@ -1,0 +1,88 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: azurefile-csi-dotnet-dump-test
+provisioner: file.csi.azure.com
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - dir_mode=0444
+  - file_mode=0444
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+parameters:
+  skuName: Standard_LRS
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: azurefilenew
+provisioner: kubernetes.io/azure-file
+mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=1000
+  - gid=1000
+  - mfsymlinks
+  - nobrl
+  - cache=none
+parameters:
+  skuName: Standard_LRS
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pvc-docli
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: azurefile-csi-dotnet-dump-test
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: azurefilenew
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test-container
+    image: nginx
+    volumeMounts:
+    - mountPath: "/mnt/test"
+      name: test-volume
+  volumes:
+  - name: test-volume
+    persistentVolumeClaim:
+      claimName: test-pvc
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-docli
+spec:
+  containers:
+  - name: test-container
+    image: nginx
+    volumeMounts:
+    - mountPath: "/mnt/test"
+      name: test-volume
+  volumes:
+  - name: test-volume
+    persistentVolumeClaim:
+      claimName: test-pvc-docli
