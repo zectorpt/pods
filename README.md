@@ -80,3 +80,20 @@ kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/windowsp
 
 kubectl exec -it iis-azurefile -- cmd <br>
 kubectl exec -it iis-azurefile -- powershell <br>
+
+# customstorageclass.yaml
+Implementation of a storage class with custom file and dir permissions with pods
+
+Deploy:
+kubectl apply -f  https://raw.githubusercontent.com/zectorpt/pods/refs/heads/master/customstorageclass.yaml <br>
+ <br>
+kubectl exec -it test-pod -- bash <br>
+cd /mnt/      <br>
+ls -l <br>
+ <br>
+kubectl exec -it test-pod-docli -- bash <br>
+cd /mnt/ <br>
+ls -l <br>
+![image](https://github.com/user-attachments/assets/b19ecba5-68df-41bc-890a-209c3e0bc0e6)
+
+
