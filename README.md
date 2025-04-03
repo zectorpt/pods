@@ -104,25 +104,25 @@ kubectl apply -f  https://raw.githubusercontent.com/zectorpt/pods/refs/heads/mas
 <br>
 Output
 <br>
-jose [ ~ ]$ kubectl apply -f  https://raw.githubusercontent.com/zectorpt/pods/refs/heads/master/call_pod_by_name_headless.yaml
-namespace/testing-headless created
-service/nginx-headless created
-statefulset.apps/nginx created
-jose [ ~ ]$ kubectl get pods --namespace testing-headless
-NAME      READY   STATUS    RESTARTS   AGE
-nginx-0   1/1     Running   0          41s
-nginx-1   1/1     Running   0          40s
-nginx-2   1/1     Running   0          38s
-jose [ ~ ]$ kubectl get services --namespace testing-headless
-NAME             TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-nginx-headless   ClusterIP   None         <none>        80/TCP    56s
-jose [ ~ ]$ kubectl get statefulset.apps --namespace testing-headless
-NAME    READY   AGE
-nginx   3/3     78s
+jose [ ~ ]$ kubectl apply -f  https://raw.githubusercontent.com/zectorpt/pods/refs/heads/master/call_pod_by_name_headless.yaml<br>
+namespace/testing-headless created<br>
+service/nginx-headless created<br>
+statefulset.apps/nginx created<br>
+jose [ ~ ]$ kubectl get pods --namespace testing-headless<br>
+NAME      READY   STATUS    RESTARTS   AGE<br>
+nginx-0   1/1     Running   0          41s<br>
+nginx-1   1/1     Running   0          40s<br>
+nginx-2   1/1     Running   0          38s<br>
+jose [ ~ ]$ kubectl get services --namespace testing-headless<br>
+NAME             TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE<br>
+nginx-headless   ClusterIP   None         <none>        80/TCP    56s<br>
+jose [ ~ ]$ kubectl get statefulset.apps --namespace testing-headless<br>
+NAME    READY   AGE<br>
+nginx   3/3     78s<br>
+<br><br>
+jose [ ~ ]$ kubectl exec -it nginx-0 --namespace testing-headless -- bash<br>
+root@nginx-0:/# curl nginx-1.nginx-headless<br>
+<!DOCTYPE html><br>
+<html><br>
+...........<br>
 <br>
-jose [ ~ ]$ kubectl exec -it nginx-0 --namespace testing-headless -- bash
-root@nginx-0:/# curl nginx-1.nginx-headless
-<!DOCTYPE html>
-<html>
-...........
-
