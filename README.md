@@ -96,4 +96,33 @@ cd /mnt/ <br>
 ls -l <br>
 ![image](https://github.com/user-attachments/assets/b19ecba5-68df-41bc-890a-209c3e0bc0e6)
 
+# call_pod_by_name_headless.yaml
+Implementation of an headless service to allow to call a pod by name.
+
+Deploy:
+kubectl apply -f  https://raw.githubusercontent.com/zectorpt/pods/refs/heads/master/call_pod_by_name_headless.yaml <br>
+<br>
+Output
+<br>
+jose [ ~ ]$ kubectl apply -f  https://raw.githubusercontent.com/zectorpt/pods/refs/heads/master/call_pod_by_name_headless.yaml
+namespace/testing-headless created
+service/nginx-headless created
+statefulset.apps/nginx created
+jose [ ~ ]$ kubectl get pods --namespace testing-headless
+NAME      READY   STATUS    RESTARTS   AGE
+nginx-0   1/1     Running   0          41s
+nginx-1   1/1     Running   0          40s
+nginx-2   1/1     Running   0          38s
+jose [ ~ ]$ kubectl get services --namespace testing-headless
+NAME             TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+nginx-headless   ClusterIP   None         <none>        80/TCP    56s
+jose [ ~ ]$ kubectl get statefulset.apps --namespace testing-headless
+NAME    READY   AGE
+nginx   3/3     78s
+<br>
+jose [ ~ ]$ kubectl exec -it nginx-0 --namespace testing-headless -- bash
+root@nginx-0:/# curl nginx-1.nginx-headless
+<!DOCTYPE html>
+<html>
+...........
 
