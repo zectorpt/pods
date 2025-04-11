@@ -24,6 +24,9 @@ kubectl apply -f https://raw.githubusercontent.com/zectorpt/pods/master/ubuntuts
 
 Enter the POD:
 kubectl exec -it ubuntuts -- /bin/bash
+<br>
+![image](https://github.com/user-attachments/assets/5ffa31cd-6244-4a67-b3b2-e3c173a62464)
+<br>
 
 # deploymentwithpvc.yaml
 Create a PV and PVC to use with a deployment
